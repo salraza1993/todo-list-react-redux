@@ -1,5 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --body-bg: #e6e6e6;
+  --body-color: #353535;
+  --input-container-bg: #ffffff;
+  --todo-list-bg: #ffffff;
+  --todo-list-hover-bg: #d6d6d6;
+  --todo-list-disabled-bg: #e0e0e0;
+  --todo-list-disabled-color: #b7b7b7;
+  --todo-list-color: var(--body-color);
+  --todo-list-border: #e6e6e6;
+  --input-bg: #e6e6e6;
+
+  --box-shadow:
+    0.9px 1.5px 2.2px rgba(0, 0, 0, 0.037),
+    2.1px 3.5px 5.3px rgba(0, 0, 0, 0.053),
+    3.9px 6.6px 10px rgba(0, 0, 0, 0.065),
+    6.9px 11.8px 17.9px rgba(0, 0, 0, 0.077),
+    13px 22.1px 33.4px rgba(0, 0, 0, 0.093),
+    31px 53px 80px rgba(0, 0, 0, 0.13);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: #212529;
+    --body-color: #dee2e6;
+    --input-container-bg: #464d54;
+    --todo-list-bg: #464d54;
+    --todo-list-hover-bg: #111a22;
+    --todo-list-disabled-bg: #282c30;
+    --todo-list-disabled-color: #43484c;
+    --todo-list-color: var(--body-color);
+    --todo-list-border: #464d54;
+    --input-bg: #97aabd;
+  }  
+}
 body {
   margin: 0;
+  background-color: var(--body-bg);
+  color: var(--body-color);
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

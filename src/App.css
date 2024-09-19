@@ -1,38 +1,95 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.main-section {
   min-height: 100vh;
+}
+
+.todo-container {
+  position: relative;
+  max-width: 600px;
+  min-width: 600px;
+}
+.todo-input-block {
+  background-color: var(--input-container-bg);
+  box-shadow: var(--box-shadow);
+}
+
+.todo-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+input.form-control {
+  background-color: var(--input-bg);
+  color: var(--body-color);
+  border-color: var(--input-bg);
+  box-shadow: none !important;
+  &:focus {
+  }
+  &:placeholder-shown {
+    color: var(--body-color);
+  }
+}
+.todo-list__item {
+  position: relative;
+  border: 1px solid var(--todo-list-border);
+  background-color: var(--todo-list-bg);
+  color: var(--todo-list-color);
+  border-radius: 0.35rem;
+  padding: 0.5rem;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 1rem;
+  justify-content: space-between;
+  transition: all 0.3s ease-in;
+  box-shadow: var(--box-shadow);
+  .__heading {
+    padding-inline-start: 0.5rem;
+  }
+  &:hover {
+    background-color: var(--todo-list-hover-bg);
+  }
+  .__buttons .__edit,
+  .__buttons .__complete,
+  .__buttons .__delete {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--todo-list-border);
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+  }
+  .__buttons .__edit:hover {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--bs-white);
+  }
+  .__buttons .__complete:hover {
+    background-color: var(--bs-success);
+    border-color: var(--bs-success);
+    color: var(--bs-white);
+  }
+  
+  .__buttons .__delete:hover {
+    background-color: var(--bs-danger);
+    border-color: var(--bs-danger);
+    color: var(--bs-white);
+  }
+  &:is(.completed) {
+    background-color: var(--todo-list-disabled-bg);
+    border-color: var(--todo-list-disabled-bg);
+    user-select: none;
+    .__heading {
+      text-decoration: line-through;
+      color: var(--todo-list-disabled-color)
+    }
+  }
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+
