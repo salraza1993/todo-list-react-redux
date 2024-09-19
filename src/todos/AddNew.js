@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNewTodo } from '../features/todos/todosSlice';
 
 function AddNew() {
+  const allTodos = useSelector(state => state.todo.todos);
   const input_value_min_length = 3;
+
   const dispatch = useDispatch();
+  
+  const [isAlreadyExist, setIsAlreadyExist] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -25,11 +29,17 @@ function AddNew() {
   const addNewTodoHandler = (e) => {
     e.preventDefault();   
     if (inputValue != '' && !inputValidation(inputValue)) {
-      dispatch(addNewTodo(inputValue));
-      setInputValue('')
-      setError(false);
-      setErrorMessage('');
-      setIsValid(false);
+      const isAlreadyAvailable = allTodos.some(todo => todo.content === inputValue);
+      if (isAlreadyAvailable) {
+        setIsAlreadyExist(true);
+      } else {
+        dispatch(addNewTodo(inputValue));
+        setIsAlreadyExist(false);
+        setInputValue('')
+        setError(false);
+        setErrorMessage('');
+        setIsValid(false);
+      }
     } else {
       new Error('Something went wrong');
     }
@@ -62,6 +72,11 @@ function AddNew() {
             </button>
           </div>
         </div>
+        {
+          isAlreadyExist && <div class="alert alert-danger" role="alert">
+            This <strong>"{inputValue}"</strong> Todo already exists in the list!
+          </div>
+        }
       </form>
     </>
   )
