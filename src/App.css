@@ -11,7 +11,9 @@
   background-color: var(--input-container-bg);
   box-shadow: var(--box-shadow);
 }
-
+.alert {
+  --bs-alert-margin-bottom: 0;
+}
 .todo-list {
   position: relative;
   list-style: none;
@@ -26,8 +28,7 @@ input.form-control {
   color: var(--body-color);
   border-color: var(--input-bg);
   box-shadow: none !important;
-  &:focus {
-  }
+  &:focus {}
   &:placeholder-shown {
     color: var(--body-color);
   }
@@ -47,6 +48,9 @@ input.form-control {
   box-shadow: var(--box-shadow);
   .__heading {
     padding-inline-start: 0.5rem;
+  }
+  &:is(.dragging) {
+    cursor: move;
   }
   &:hover {
     background-color: var(--todo-list-hover-bg);

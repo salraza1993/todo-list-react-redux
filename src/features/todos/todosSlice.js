@@ -23,6 +23,11 @@ export const todosSlice = createSlice({
       state.todos.push(newTodo)      
       saveTodosToLocalStorage(state.todos);
     },
+    saveAll: (state, action) => { 
+      console.log(action);
+      state.todos = action.payload
+      saveTodosToLocalStorage(state.todos);
+    },
     updateTodo: (state, action) => {
       const { id, content } = action.payload;
       console.log('id: ', id, 'content: ', content);
@@ -47,6 +52,6 @@ export const todosSlice = createSlice({
   }
 });
 
-export const { addNewTodo, removeTodo, updateTodo, completeTodo } = todosSlice.actions;
+export const { addNewTodo, removeTodo, updateTodo, completeTodo, saveAll } = todosSlice.actions;
 
 export default todosSlice.reducer;

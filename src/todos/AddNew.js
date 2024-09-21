@@ -13,7 +13,10 @@ function AddNew() {
   const [error, setError] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const inputHandler = (event) => { 
+    setInputValue(event.target.value)
+    setIsAlreadyExist(false);
+  };
   const inputValidation = (value) => {
     if (value.length < input_value_min_length) {
       setError(true);
@@ -54,7 +57,7 @@ function AddNew() {
               <input
                 value={inputValue}
                 onInput={(e) => inputValidation(e.target.value)}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={(e) => inputHandler(e)}
                 type="text"
                 name="todo_entry"
                 id="todo_entry"

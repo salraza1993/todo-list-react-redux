@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { completeTodo, removeTodo, updateTodo } from '../features/todos/todosSlice';
 
-function TodoSingleItem({ data }) {
+function TodoSingleItem({ data, itemIndex, onDragEnterHandler, onDragStartHandler, sortItemsHandler, isDragging }) {
   const allTodos = useSelector(state => state.todo.todos);
 
   const dispatch = useDispatch();
@@ -30,9 +30,23 @@ function TodoSingleItem({ data }) {
     dispatch(completeTodo({ id: itemId, completed: true }));
     setIsEditEnabled(false);
   }
+  const generateClass = () => {
+    const classes = ['todo-list__item'];
+    if (data?.completed) classes.push('completed');
+    if (isDragging) classes.push('dragging');
+    return classes.join(' ');
+  }
+  
   return (
     <>
-      <li className={data.completed ? "todo-list__item completed" : "todo-list__item"} id={data.id} title="">
+      <li
+        className={generateClass()}
+        id={data.id}
+        onDragStart={() => onDragStartHandler(itemIndex)}
+        onDragEnter={() => onDragEnterHandler(itemIndex)}
+        onDragEnd={() => sortItemsHandler(itemIndex)}
+        onDragOver={() => onDragEnterHandler(itemIndex)}
+        draggable>
         {
           isEditEnabled ? <input
             onChange={(e) => setUpdateValue(e.target.value)}
